@@ -1,6 +1,6 @@
 import Button from "../ui/Button";
 import Container from "../common/Container";
-
+import WorkspaceRail from "../layout/WorkspaceRail";
 const kpiCards = [
   { title: "Experience", value: "3+", subtitle: "Years", trend: "+1 Year", accent: "#118DFF" },
   { title: "Projects", value: "03", subtitle: "Enterprise", trend: "Active", accent: "#6B4FBB" },
@@ -28,18 +28,6 @@ function Gloss() {
   );
 }
 
-const NavIcon = ({ children, active, label }: { children: React.ReactNode; active?: boolean; label: string }) => (
-  <button
-    title={label}
-    className={`group relative flex h-11 w-11 items-center justify-center rounded-lg transition-colors ${
-      active ? "bg-white/10 text-white" : "text-[#7C93B0] hover:bg-white/5 hover:text-white"
-    }`}
-  >
-    {active && <span className="absolute left-0 h-6 w-[3px] rounded-r bg-[#118DFF]" />}
-    {children}
-  </button>
-);
-
 export default function Hero() {
   return (
     <section
@@ -54,46 +42,7 @@ export default function Hero() {
       </div>
 
       <div className="relative flex">
-        {/* ===== NAV RAIL (Fabric-style, glossy) ===== */}
-        <aside className="sticky top-[70px] hidden h-[calc(100vh-70px)] w-[72px] flex-col items-center gap-2 bg-gradient-to-b from-[#0E1F35] to-[#0B1929] py-6 shadow-[4px_0_24px_-8px_rgba(0,0,0,0.25)] lg:flex">
-          <div className="mb-6 flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#F2C811] to-[#118DFF] text-sm font-bold text-black shadow-[0_2px_8px_rgba(17,141,255,0.4)]">
-            NS
-          </div>
-
-          <NavIcon active label="Home">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M3 9.5 10 3l7 6.5M5 8v9h10V8" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-            </svg>
-          </NavIcon>
-          <NavIcon label="Workspaces">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.6" />
-              <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.6" />
-              <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.6" />
-              <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </NavIcon>
-          <NavIcon label="Create">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-            </svg>
-          </NavIcon>
-          <NavIcon label="Datasets">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <ellipse cx="10" cy="4.5" rx="6" ry="2" stroke="currentColor" strokeWidth="1.6" />
-              <path d="M4 4.5V15c0 1.1 2.7 2 6 2s6-.9 6-2V4.5M4 9.5c0 1.1 2.7 2 6 2s6-.9 6-2" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </NavIcon>
-          <NavIcon label="Monitor">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M3 14l4-5 3 3 6-8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </NavIcon>
-
-          <div className="mt-auto flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#118DFF] to-[#0F6CBD] text-xs font-semibold text-white shadow-[0_2px_10px_rgba(17,141,255,0.5)]">
-            NJ
-          </div>
-        </aside>
+        <WorkspaceRail />
 
         {/* ===== MAIN ===== */}
         <div className="min-w-0 flex-1">
