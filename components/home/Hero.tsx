@@ -1,30 +1,45 @@
-import Button from "../ui/Button";
+"use client";
+
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Download,
+} from "lucide-react";
+import Link from "next/link";
+
 import Container from "../common/Container";
-import WorkspaceRail from "../layout/WorkspaceRail";
-const kpiCards = [
-  { title: "Experience", value: "3+", subtitle: "Years", trend: "+1 Year", accent: "#118DFF" },
-  { title: "Projects", value: "03", subtitle: "Enterprise", trend: "Active", accent: "#6B4FBB" },
-  { title: "Certifications", value: "05+", subtitle: "Microsoft", trend: "Growing", accent: "#F2C811" },
-  { title: "GitHub", value: "20+", subtitle: "Repositories", trend: "Updated", accent: "#33B6AF" },
-];
 
-const pipeline = [
-  { label: "Bronze Lakehouse", color: "#6B4FBB" },
-  { label: "Silver Lakehouse", color: "#6B4FBB" },
-  { label: "Gold Warehouse", color: "#0F6CBD" },
-  { label: "Semantic Model", color: "#F2C811" },
-  { label: "Power BI", color: "#F2C811" },
-];
+/* =========================================================
+   SOCIAL ICONS
+   Inline SVGs keep GitHub / LinkedIn independent from
+   icon-package brand exports.
+========================================================= */
 
-const technologies = [
-  "Microsoft Fabric", "Power BI", "Lakehouse", "Warehouse", "SQL",
-  "DAX", "Python", "PySpark", "Azure", "Git", "GitHub", "Data Engineering",
-];
-
-/** Thin white sheen overlay — gives any card a glossy, light-catching top edge */
-function Gloss() {
+function GitHubIcon({ size = 16 }: { size?: number }) {
   return (
-    <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-b from-white/70 via-white/10 to-transparent" />
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.866-.014-1.699-2.782.604-3.369-1.342-3.369-1.342-.455-1.157-1.11-1.465-1.11-1.465-.909-.621.069-.608.069-.608 1.005.071 1.533 1.032 1.533 1.032.892 1.53 2.341 1.088 2.91.832.091-.646.35-1.088.636-1.339-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.294 2.748-1.025 2.748-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .269.18.58.688.482A10.002 10.002 0 0 0 22 12C22 6.477 17.523 2 12 2Z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V8.999h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.605 0 4.267 2.372 4.267 5.456v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM3.555 20.452h3.56V8.999h-3.56v11.453ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0Z" />
+    </svg>
   );
 }
 
@@ -32,208 +47,287 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative bg-[#F7F8FA] font-['Segoe_UI',system-ui,sans-serif]"
+      className="relative overflow-hidden border-b border-[#e8eaed] bg-[#fbfbfa]"
     >
-      {/* Ambient background wash */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 right-[-10%] h-[500px] w-[500px] rounded-full bg-[#118DFF]/[0.07] blur-3xl" />
-        <div className="absolute top-[40%] -left-32 h-[420px] w-[420px] rounded-full bg-[#F2C811]/[0.08] blur-3xl" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(17,141,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(17,141,255,0.025)_1px,transparent_1px)] bg-[size:44px_44px]" />
-      </div>
+      {/* =====================================================
+          AMBIENT BACKGROUND
+      ===================================================== */}
 
-      <div className="relative flex">
-        <WorkspaceRail />
+      <div className="pointer-events-none absolute left-1/2 top-[-180px] h-[520px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(45,173,207,0.12),transparent_68%)] blur-2xl" />
 
-        {/* ===== MAIN ===== */}
-        <div className="min-w-0 flex-1">
-          <Container>
-            <div className="py-12">
-              {/* Badge */}
-              <div className="relative inline-flex w-fit items-center gap-2 overflow-hidden rounded-full border border-[#118DFF]/25 bg-white/60 px-4 py-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm">
-                <Gloss />
-                <span className="relative h-1.5 w-1.5 rounded-full bg-[#118DFF]" />
-                <span className="relative text-xs font-medium uppercase tracking-[0.2em] text-[#0F6CBD]">
-                  Microsoft Fabric • Enterprise Analytics Engineer
-                </span>
+      <div className="pointer-events-none absolute right-[-160px] top-[120px] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(109,77,246,0.08),transparent_68%)] blur-3xl" />
+
+      <Container>
+        <div className="relative grid min-h-[calc(100vh-78px)] items-center gap-16 py-16 sm:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 lg:py-24 xl:gap-20">
+          {/* =================================================
+              LEFT CONTENT
+          ================================================= */}
+
+          <div className="relative z-10 max-w-[700px]">
+            {/* Identity */}
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#dce8eb] bg-white/80 px-3.5 py-2 shadow-[0_3px_14px_rgba(30,80,100,0.05)] backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-[#18a8a1] shadow-[0_0_0_4px_rgba(24,168,161,0.10)]" />
+
+              <span className="text-[10px] font-semibold tracking-[0.18em] text-[#557080]">
+                NITHISH KUMAR S J
+              </span>
+            </div>
+
+            {/* Main heading */}
+            <h1 className="max-w-[760px] text-[3.3rem] font-bold leading-[1.02] tracking-[-0.055em] text-[#172033] sm:text-[4.5rem] lg:text-[4.75rem] xl:text-[5.35rem]">
+              I build data systems
+              <br />
+              that turn{" "}
+              <span className="bg-gradient-to-r from-[#1596a6] via-[#248fc4] to-[#6d4df6] bg-clip-text text-transparent">
+                complex data
+              </span>
+              <br />
+              into decisions.
+            </h1>
+
+            {/* Description */}
+            <p className="mt-8 max-w-[610px] text-[16px] leading-8 text-[#626b78] sm:text-[17px] sm:leading-8">
+              Sales Operations &amp; Business Analytics professional focused
+              on building modern data solutions with Microsoft Fabric,
+              Power BI, SQL, and Python.
+            </p>
+
+            {/* Actions */}
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <Link
+                href="#projects"
+                className="group inline-flex items-center gap-2.5 rounded-xl bg-[#6246e8] px-5 py-3.5 text-[13px] font-semibold text-white shadow-[0_7px_20px_rgba(98,70,232,0.20)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#563bd8] hover:shadow-[0_10px_25px_rgba(98,70,232,0.25)]"
+              >
+                View My Work
+
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={1.8}
+                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+
+              <Link
+                href="/resume"
+                className="group inline-flex items-center gap-2.5 rounded-xl border border-[#dfe2e6] bg-white px-5 py-3.5 text-[13px] font-semibold text-[#252a33] shadow-[0_3px_12px_rgba(25,35,50,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#d3d7dc] hover:bg-[#f8f9fa] hover:shadow-[0_7px_18px_rgba(25,35,50,0.07)]"
+              >
+                <Download
+                  size={15}
+                  strokeWidth={1.8}
+                />
+
+                Download CV
+              </Link>
+            </div>
+
+            {/* Social links */}
+            <div className="mt-9 flex items-center gap-2.5">
+              <a
+                href="https://github.com/Nithish-S-J"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="group inline-flex items-center gap-2 rounded-xl border border-[#e4e6e9] bg-white px-3.5 py-2.5 text-[12px] font-medium text-[#536070] shadow-[0_2px_8px_rgba(25,35,50,0.035)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#d8dce1] hover:text-[#17181b] hover:shadow-[0_6px_16px_rgba(25,35,50,0.07)]"
+              >
+                <GitHubIcon size={16} />
+                GitHub
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/nithishsj/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="group inline-flex items-center gap-2 rounded-xl border border-[#e4e6e9] bg-white px-3.5 py-2.5 text-[12px] font-medium text-[#536070] shadow-[0_2px_8px_rgba(25,35,50,0.035)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#d8dce1] hover:text-[#17181b] hover:shadow-[0_6px_16px_rgba(25,35,50,0.07)]"
+              >
+                <LinkedInIcon size={16} />
+                LinkedIn
+              </a>
+
+              <a
+                href="mailto:Nithishhsj23@gmail.com"
+                aria-label="Email"
+                className="group inline-flex items-center rounded-xl border border-[#e4e6e9] bg-white px-3.5 py-2.5 text-[12px] font-medium text-[#536070] shadow-[0_2px_8px_rgba(25,35,50,0.035)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#d8dce1] hover:text-[#17181b] hover:shadow-[0_6px_16px_rgba(25,35,50,0.07)]"
+              >
+                Email
+              </a>
+            </div>
+
+            {/* Professional snapshot */}
+            <div className="mt-12 grid max-w-[620px] grid-cols-3 border-t border-[#e5e7ea] pt-6">
+              <div>
+                <p className="text-[21px] font-bold tracking-[-0.04em] text-[#172033]">
+                  3+
+                </p>
+
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#89919d]">
+                  Years Experience
+                </p>
               </div>
 
-              {/* Heading */}
-              <h1 className="mt-6 text-5xl font-semibold leading-tight text-[#201F1E] md:text-6xl">
-                Building
-                <span className="block bg-gradient-to-r from-[#0F6CBD] via-[#118DFF] to-[#F2C811] bg-clip-text text-transparent">
-                  Enterprise Analytics
-                </span>
-                Platforms
-              </h1>
+              <div className="border-l border-[#e5e7ea] pl-5">
+                <p className="text-[21px] font-bold tracking-[-0.04em] text-[#172033]">
+                  Fabric
+                </p>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#605E5C]">
-                Designing modern Microsoft Fabric analytics solutions using Lakehouse
-                architecture, SQL Warehouses, Semantic Models and Power BI dashboards
-                that transform raw enterprise data into executive decision intelligence.
-              </p>
-
-              {/* CTA */}
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="#projects">Explore Projects</Button>
-                <Button href="/resume" variant="secondary">Download Resume</Button>
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#89919d]">
+                  Data Platform
+                </p>
               </div>
 
-              {/* Pipeline chips */}
-              <div className="mt-10 flex flex-wrap items-center gap-2">
-                {pipeline.map((stage, i) => (
-                  <div key={stage.label} className="flex items-center gap-2">
-                    <div className="relative flex items-center gap-2 overflow-hidden rounded-md border border-[#E1DFDD] bg-white/70 px-3 py-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-sm">
-                      <Gloss />
-                      <span className="relative h-2 w-2 rounded-sm" style={{ backgroundColor: stage.color }} />
-                      <span className="relative text-xs font-medium text-[#201F1E]">{stage.label}</span>
-                    </div>
-                    {i < pipeline.length - 1 && (
-                      <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10h12M12 6l4 4-4 4" stroke="#C8C6C4" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <div className="border-l border-[#e5e7ea] pl-5">
+                <p className="text-[21px] font-bold tracking-[-0.04em] text-[#172033]">
+                  Analytics
+                </p>
 
-              {/* Status cards */}
-              <div className="mt-10 grid gap-4 md:grid-cols-2">
-                <div className="relative overflow-hidden rounded-xl border border-[#E1DFDD] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_28px_-12px_rgba(34,197,94,0.25)] transition-shadow hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_16px_32px_-10px_rgba(34,197,94,0.3)]">
-                  <Gloss />
-                  <p className="relative text-xs font-semibold uppercase tracking-[0.15em] text-green-700">Status</p>
-                  <h3 className="relative mt-2 text-lg font-semibold text-[#201F1E]">Available for Opportunities</h3>
-                  <p className="relative mt-1 text-sm text-[#605E5C]">Data Engineering • Fabric • Power BI</p>
-                </div>
-                <div className="relative overflow-hidden rounded-xl border border-[#E1DFDD] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_28px_-12px_rgba(17,141,255,0.25)] transition-shadow hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_16px_32px_-10px_rgba(17,141,255,0.3)]">
-                  <Gloss />
-                  <p className="relative text-xs font-semibold uppercase tracking-[0.15em] text-[#0F6CBD]">Current Project</p>
-                  <h3 className="relative mt-2 text-lg font-semibold text-[#201F1E]">AirOps360</h3>
-                  <p className="relative mt-1 text-sm text-[#605E5C]">Enterprise Aviation Intelligence Platform</p>
-                </div>
-              </div>
-
-              {/* KPI cards — glossy Power BI Card visuals */}
-              <div className="mt-12">
-                <h3 className="mb-4 text-base font-semibold text-[#201F1E]">Executive Overview</h3>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                  {kpiCards.map((item) => (
-                    <div
-                      key={item.title}
-                      className="group relative overflow-hidden rounded-xl border border-[#E1DFDD] bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_10px_24px_-12px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_18px_32px_-12px_rgba(17,141,255,0.22)]"
-                    >
-                      <Gloss />
-                      <span
-                        className="absolute inset-x-0 top-0 h-[3px]"
-                        style={{ background: `linear-gradient(90deg, ${item.accent}, transparent)` }}
-                      />
-                      <div className="relative flex items-center justify-between">
-                        <p className="text-xs font-medium uppercase tracking-widest text-[#A19F9D]">{item.title}</p>
-                        <span
-                          className="rounded px-1.5 py-0.5 text-[10px] font-medium"
-                          style={{ backgroundColor: `${item.accent}18`, color: item.accent }}
-                        >
-                          {item.trend}
-                        </span>
-                      </div>
-                      <h2 className="relative mt-4 text-4xl font-semibold text-[#201F1E]">{item.value}</h2>
-                      <p className="relative mt-1 text-sm text-[#605E5C]">{item.subtitle}</p>
-                      <div className="relative mt-3 h-1 w-full rounded-full bg-[#F3F2F1]">
-                        <div
-                          className="h-1 rounded-full transition-all duration-500"
-                          style={{ width: "72%", backgroundColor: item.accent }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ===== Signature: live report canvas (glass) ===== */}
-              <div className="mt-12 overflow-hidden rounded-2xl border border-[#E1DFDD] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_24px_48px_-20px_rgba(17,141,255,0.18)]">
-                <div className="relative flex items-center justify-between overflow-hidden border-b border-[#E1DFDD] bg-white/60 px-5 py-3 backdrop-blur-md">
-                  <Gloss />
-                  <div className="relative flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-sm bg-[#F2C811]" />
-                    <span className="text-sm font-medium text-[#201F1E]">AirOps360 — Report.pbix</span>
-                  </div>
-                  <div className="relative flex items-center gap-4 text-[#A19F9D]">
-                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M4 14V6a2 2 0 012-2h8a2 2 0 012 2v8M8 18h4" stroke="currentColor" strokeWidth="1.5" /></svg>
-                    <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="5" cy="10" r="1.6" fill="currentColor" /><circle cx="10" cy="10" r="1.6" fill="currentColor" /><circle cx="15" cy="10" r="1.6" fill="currentColor" /></svg>
-                  </div>
-                </div>
-
-                <div className="grid gap-5 bg-[#FCFCFD] p-5 md:grid-cols-[1.3fr_1fr]">
-                  {/* Bar chart */}
-                  <div className="relative overflow-hidden rounded-lg border border-[#E1DFDD] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                    <Gloss />
-                    <p className="relative mb-3 text-xs font-medium text-[#605E5C]">Flights Processed by Region</p>
-                    <svg viewBox="0 0 300 120" className="relative w-full">
-                      {[42, 78, 55, 95, 60, 88].map((h, i) => (
-                        <rect
-                          key={i}
-                          x={i * 48 + 10}
-                          y={110 - h}
-                          width="30"
-                          height={h}
-                          rx="3"
-                          fill={i === 3 ? "#F2C811" : "#118DFF"}
-                          opacity={i === 3 ? 1 : 0.85}
-                        />
-                      ))}
-                      <line x1="0" y1="110" x2="300" y2="110" stroke="#E1DFDD" strokeWidth="1" />
-                    </svg>
-                  </div>
-
-                  {/* Gauge + matrix */}
-                  <div className="flex flex-col gap-4">
-                    <div className="relative flex items-center gap-4 overflow-hidden rounded-lg border border-[#E1DFDD] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                      <Gloss />
-                      <div
-                        className="relative h-16 w-16 shrink-0 rounded-full shadow-[0_2px_10px_rgba(17,141,255,0.25)]"
-                        style={{ background: "conic-gradient(#118DFF 0% 82%, #F3F2F1 82% 100%)" }}
-                      >
-                        <div className="flex h-full w-full items-center justify-center">
-                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xs font-semibold text-[#201F1E]">
-                            82%
-                          </div>
-                        </div>
-                      </div>
-                      <div className="relative">
-                        <p className="text-xs text-[#A19F9D]">On-time Performance</p>
-                        <p className="text-sm font-medium text-[#201F1E]">Target: 85%</p>
-                      </div>
-                    </div>
-
-                    <div className="relative overflow-hidden rounded-lg border border-[#E1DFDD] bg-white p-3 text-xs shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                      <Gloss />
-                      <div className="relative flex justify-between border-b border-[#F3F2F1] pb-1.5 font-medium text-[#A19F9D]">
-                        <span>Route</span><span>Delay</span>
-                      </div>
-                      {[["MAA–DEL", "4m"], ["BLR–BOM", "12m"], ["HYD–CCU", "2m"]].map(([r, d]) => (
-                        <div key={r} className="relative flex justify-between border-b border-[#F3F2F1] py-1.5 text-[#201F1E] last:border-0">
-                          <span>{r}</span><span>{d}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Tech tags footer */}
-                <div className="flex flex-wrap gap-2 border-t border-[#E1DFDD] bg-white/60 px-5 py-3 backdrop-blur-md">
-                  {technologies.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-[#E1DFDD] bg-white px-2.5 py-1 text-[11px] text-[#605E5C] shadow-[0_1px_1px_rgba(0,0,0,0.03)]"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#89919d]">
+                  Business Focus
+                </p>
               </div>
             </div>
-          </Container>
+          </div>
+
+          {/* =================================================
+              RIGHT VISUAL
+          ================================================= */}
+
+          <div className="relative hidden min-h-[560px] items-center justify-center lg:flex">
+            {/* Ambient glow */}
+            <div className="absolute h-[390px] w-[390px] rounded-full bg-[radial-gradient(circle,rgba(21,150,166,0.12),transparent_68%)] blur-2xl" />
+
+            <div className="relative h-[490px] w-[410px]">
+              {/* Outer frame */}
+              <div className="absolute inset-0 rotate-[2deg] rounded-[38px] border border-[#dfe7eb] bg-white/60 shadow-[0_25px_70px_rgba(32,65,85,0.09)] backdrop-blur-sm" />
+
+              {/* Inner frame */}
+              <div className="absolute inset-[18px] overflow-hidden rounded-[30px] border border-[#e3e8eb] bg-gradient-to-b from-[#f8fcfd] to-[#eef5f7]">
+                {/* Glow */}
+                <div className="absolute left-1/2 top-[-120px] h-[260px] w-[320px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(41,168,190,0.16),transparent_70%)] blur-2xl" />
+
+                {/* Placeholder */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-8">
+                  <div className="relative flex h-[210px] w-[210px] items-center justify-center rounded-full border-[10px] border-white bg-gradient-to-br from-[#dff5f6] via-[#e9f3ff] to-[#eee9ff] shadow-[0_18px_45px_rgba(45,100,130,0.13)]">
+                    <div className="flex h-[165px] w-[165px] items-center justify-center rounded-full border border-[#d5e5e9] bg-white/70">
+                      <span className="text-[30px] font-bold tracking-[-0.05em] text-[#167f91]">
+                        NSJ
+                      </span>
+                    </div>
+
+                    <span className="absolute bottom-3 right-7 h-5 w-5 rounded-full border-4 border-white bg-[#20bd67]" />
+                  </div>
+
+                  <p className="mt-7 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8493a2]">
+                    Data &amp; Analytics
+                  </p>
+
+                  <p className="mt-2 text-center text-[15px] font-semibold text-[#25364d]">
+                    Building modern data platforms
+                  </p>
+                </div>
+
+                {/* Technology chips */}
+                <div className="absolute left-5 top-8 rounded-xl border border-white/80 bg-white/85 px-3 py-2 shadow-[0_6px_20px_rgba(30,70,90,0.08)] backdrop-blur-md">
+                  <span className="text-[10px] font-semibold text-[#167f91]">
+                    MICROSOFT FABRIC
+                  </span>
+                </div>
+
+                <div className="absolute right-5 top-[105px] rounded-xl border border-white/80 bg-white/85 px-3 py-2 shadow-[0_6px_20px_rgba(30,70,90,0.08)] backdrop-blur-md">
+                  <span className="text-[10px] font-semibold text-[#6048db]">
+                    POWER BI
+                  </span>
+                </div>
+
+                <div className="absolute bottom-[105px] left-5 rounded-xl border border-white/80 bg-white/85 px-3 py-2 shadow-[0_6px_20px_rgba(30,70,90,0.08)] backdrop-blur-md">
+                  <span className="text-[10px] font-semibold text-[#40536c]">
+                    SQL
+                  </span>
+                </div>
+
+                <div className="absolute bottom-8 right-5 rounded-xl border border-white/80 bg-white/85 px-3 py-2 shadow-[0_6px_20px_rgba(30,70,90,0.08)] backdrop-blur-md">
+                  <span className="text-[10px] font-semibold text-[#2876a5]">
+                    PYTHON
+                  </span>
+                </div>
+              </div>
+
+              {/* Focus card */}
+              <div className="absolute -bottom-5 -left-12 w-[205px] rounded-2xl border border-[#e0e5e9] bg-white/95 p-4 shadow-[0_16px_38px_rgba(30,55,75,0.11)] backdrop-blur-xl">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#8995a3]">
+                    Current Focus
+                  </span>
+
+                  <span className="h-2 w-2 rounded-full bg-[#20bd67]" />
+                </div>
+
+                <p className="mt-2 text-[13px] font-semibold text-[#25364d]">
+                  Enterprise Analytics
+                </p>
+
+                <div className="mt-3 flex items-center gap-1">
+                  <span className="h-1.5 flex-1 rounded-full bg-[#1596a6]" />
+                  <span className="h-1.5 w-7 rounded-full bg-[#7c67eb]" />
+                  <span className="h-1.5 w-4 rounded-full bg-[#dce1e6]" />
+                </div>
+              </div>
+
+              {/* Experience card */}
+              <div className="absolute -right-8 bottom-10 rounded-2xl border border-[#e0e5e9] bg-white/95 px-4 py-3 shadow-[0_16px_38px_rgba(30,55,75,0.10)] backdrop-blur-xl">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#8a95a2]">
+                  Experience
+                </p>
+
+                <p className="mt-1 text-[17px] font-bold tracking-[-0.04em] text-[#25364d]">
+                  3+ Years
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+
+        {/* =================================================
+            BOTTOM STRIP
+        ================================================= */}
+
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-[#e6e8eb] py-7 sm:flex-row">
+          <div className="flex items-center gap-4">
+            <span className="h-px w-10 bg-[#d8dde2]" />
+
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-[#9aa2ad]">
+              BUILDING INSIGHTS
+            </p>
+
+            <span className="text-[#aab1ba]">•</span>
+
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-[#9aa2ad]">
+              SOLVING PROBLEMS
+            </p>
+
+            <span className="text-[#aab1ba]">•</span>
+
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-[#9aa2ad]">
+              DRIVING IMPACT
+            </p>
+
+            <span className="hidden h-px w-10 bg-[#d8dde2] sm:block" />
+          </div>
+
+          <Link
+            href="#about"
+            aria-label="Scroll to About"
+            className="group flex items-center gap-2 text-[11px] font-semibold text-[#718092] transition-colors hover:text-[#6246e8]"
+          >
+            Explore
+
+            <ArrowDown
+              size={14}
+              strokeWidth={1.8}
+              className="transition-transform duration-200 group-hover:translate-y-1"
+            />
+          </Link>
+        </div>
+      </Container>
     </section>
   );
 }

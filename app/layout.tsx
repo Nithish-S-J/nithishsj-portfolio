@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 import "@fontsource/inter/400.css";
@@ -12,9 +13,9 @@ import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/500.css";
 
 export const metadata: Metadata = {
-  title: "Nithish Kumar S J",
+  title: "Nithish Kumar S J | Data & Analytics Engineer",
   description:
-    "Enterprise Analytics Engineer | Microsoft Fabric | Power BI | SQL | Python",
+    "Data & Analytics Engineer focused on Microsoft Fabric, Power BI, SQL, Python, and modern enterprise data platforms.",
 };
 
 export default function RootLayout({
@@ -23,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

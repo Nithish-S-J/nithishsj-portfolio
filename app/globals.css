@@ -1,79 +1,463 @@
 @import "tailwindcss";
 
-/* ---------- ROOT ---------- */
+/* =========================================================
+   NITHISH S J — GLOBAL DESIGN SYSTEM
+   Light / Dark theme
+========================================================= */
 
 :root {
-  --background: #08090c;
-  --foreground: #f8fafc;
+  --background: #f7f9fb;
+  --foreground: #172033;
 
-  --card: rgba(15, 23, 42, 0.55);
+  --surface: #ffffff;
+  --surface-soft: #f3f6f8;
+  --surface-muted: #edf1f4;
 
-  --border: rgba(255, 255, 255, 0.08);
+  --border: #e1e7ec;
+  --border-strong: #d4dde5;
 
-  --accent: #60a5fa;
+  --text-primary: #172033;
+  --text-secondary: #5f6c7d;
+  --text-muted: #8995a4;
+
+  --accent: #1479e8;
+  --accent-hover: #0e68cf;
+
+  --teal: #1596a6;
+  --teal-soft: #e9f8f9;
+
+  --violet: #6246e8;
+  --violet-soft: #f0edff;
+
+  --success: #20bd67;
+
+  --shadow-sm: 0 2px 10px rgba(27, 52, 75, 0.05);
+  --shadow-md: 0 10px 30px rgba(27, 52, 75, 0.08);
+  --shadow-lg: 0 22px 60px rgba(27, 52, 75, 0.11);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  color-scheme: light;
+}
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+html.dark {
+  --background: #0b1119;
+  --foreground: #edf4fa;
+
+  --surface: #121c27;
+  --surface-soft: #172330;
+  --surface-muted: #1b2a39;
+
+  --border: #293b4d;
+  --border-strong: #3a5065;
+
+  --text-primary: #edf4fa;
+  --text-secondary: #a9b8c7;
+  --text-muted: #77899b;
+
+  --accent: #63b4ff;
+  --accent-hover: #7ac0ff;
+
+  --teal: #71d6df;
+  --teal-soft: #17343d;
+
+  --violet: #9b8cff;
+  --violet-soft: #272341;
+
+  --success: #35d57d;
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 22px 60px rgba(0, 0, 0, 0.38);
+
+  color-scheme: dark;
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
-  background: var(--background);
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(21, 150, 166, 0.055),
+      transparent 38%
+    ),
+    var(--background);
+
   color: var(--foreground);
 
   font-family: "Inter", sans-serif;
 
-  overflow-x: hidden;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
 }
 
-/* ---------- HEADINGS ---------- */
+html.dark body {
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(47, 136, 178, 0.10),
+      transparent 38%
+    ),
+    var(--background);
+}
 
 h1,
 h2,
-h3 {
-  font-family: "Playfair Display", serif;
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
 }
 
-/* ---------- MONO ---------- */
-
-.font-mono {
-  font-family: "JetBrains Mono", monospace;
+p {
+  color: inherit;
 }
 
-/* ---------- GLASS ---------- */
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(20, 121, 232, 0.20);
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   SHARED THEME CLASSES
+========================================================= */
+
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.surface-soft {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
 
 .glass {
-  background: rgba(15, 23, 42, 0.55);
+  background: color-mix(
+    in srgb,
+    var(--surface) 84%,
+    transparent
+  );
 
-  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow: var(--shadow-sm);
 }
 
-/* ---------- SCROLLBAR ---------- */
+.theme-transition,
+.theme-transition *,
+section,
+main,
+header,
+footer,
+article,
+nav,
+button,
+a {
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 200ms ease,
+    box-shadow 300ms ease;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #374151;
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
 
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4b5563;
+  background: var(--text-muted);
 }
 
-::-webkit-scrollbar-track {
-  background: #08090c;
+/* =========================================================
+   LIGHT THEME — BRIDGE EXISTING HARD-CODED DARK COMPONENTS
+========================================================= */
+
+/*
+  Some existing components were originally written with
+  explicit dark/light hex values. These rules allow the
+  current portfolio to transition while we progressively
+  move those components onto the design tokens above.
+*/
+
+/* Old dark page backgrounds */
+html:not(.dark) .bg-\[\#09090B\],
+html:not(.dark) .bg-\[\#08090c\],
+html:not(.dark) .bg-\[\#08090C\],
+html:not(.dark) .bg-\[\#0B0F19\] {
+  background-color: var(--background) !important;
 }
 
-/* ---------- SELECTION ---------- */
+/* Old dark surfaces */
+html:not(.dark) .bg-\[\#0D1015\],
+html:not(.dark) .bg-\[\#111827\],
+html:not(.dark) .bg-\[\#0F172A\] {
+  background-color: var(--surface) !important;
+}
 
-::selection {
-  background: #2563eb;
+/* Old dark text */
+html:not(.dark) .text-\[\#F5F5F0\],
+html:not(.dark) .text-\[\#F8FAFC\],
+html:not(.dark) .text-\[\#f8fafc\],
+html:not(.dark) .text-white {
+  color: var(--text-primary) !important;
+}
 
-  color: white;
+/* Old secondary text */
+html:not(.dark) .text-\[\#969DA8\],
+html:not(.dark) .text-\[\#858D99\],
+html:not(.dark) .text-\[\#6B7280\],
+html:not(.dark) .text-\[\#64748B\] {
+  color: var(--text-secondary) !important;
+}
+
+/* Old dark borders */
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/\[0\.06\],
+html:not(.dark) .border-white\/\[0\.07\],
+html:not(.dark) .border-white\/\[0\.08\],
+html:not(.dark) .border-slate-700 {
+  border-color: var(--border) !important;
+}
+
+/* =========================================================
+   DARK THEME — CURRENT LIGHT COMPONENTS
+========================================================= */
+
+/* White surfaces */
+html.dark .bg-white,
+html.dark .bg-white\/80,
+html.dark .bg-white\/85,
+html.dark .bg-white\/90,
+html.dark .bg-white\/92,
+html.dark .bg-white\/95 {
+  background-color: var(--surface) !important;
+}
+
+/* Light page backgrounds */
+html.dark .bg-\[\#fbfbfa\],
+html.dark .bg-\[\#f8f9fb\],
+html.dark .bg-\[\#F7F8FA\],
+html.dark .bg-\[\#f7f9fb\] {
+  background-color: var(--background) !important;
+}
+
+/* Light secondary surfaces */
+html.dark .bg-\[\#f6f8fa\],
+html.dark .bg-\[\#f5f7f9\],
+html.dark .bg-\[\#f3f7fa\],
+html.dark .bg-\[\#f3f6f8\],
+html.dark .bg-\[\#edf6ff\] {
+  background-color: var(--surface-soft) !important;
+}
+
+/* Light text */
+html.dark .text-\[\#172033\],
+html.dark .text-\[\#172d49\],
+html.dark .text-\[\#182f4c\],
+html.dark .text-\[\#243750\],
+html.dark .text-\[\#25364d\],
+html.dark .text-\[\#252a33\],
+html.dark .text-\[\#334760\] {
+  color: var(--text-primary) !important;
+}
+
+/* Secondary text */
+html.dark .text-\[\#626b78\],
+html.dark .text-\[\#626a75\],
+html.dark .text-\[\#718092\],
+html.dark .text-\[\#536070\],
+html.dark .text-\[\#43536b\],
+html.dark .text-\[\#5c7088\] {
+  color: var(--text-secondary) !important;
+}
+
+/* Muted text */
+html.dark .text-\[\#89919d\],
+html.dark .text-\[\#8995a3\],
+html.dark .text-\[\#8a95a2\],
+html.dark .text-\[\#8293a2\],
+html.dark .text-\[\#7d8ba0\],
+html.dark .text-\[\#98a3b1\] {
+  color: var(--text-muted) !important;
+}
+
+/* Light borders */
+html.dark .border-\[\#e1e7ec\],
+html.dark .border-\[\#e2e7ec\],
+html.dark .border-\[\#e3e8eb\],
+html.dark .border-\[\#e4e6e9\],
+html.dark .border-\[\#e4e8ed\],
+html.dark .border-\[\#e5e7ea\],
+html.dark .border-\[\#e6e8eb\],
+html.dark .border-\[\#e6eaee\],
+html.dark .border-\[\#e8eaed\],
+html.dark .border-\[\#e8ebef\],
+html.dark .border-\[\#dfe5eb\],
+html.dark .border-\[\#dfe2e6\],
+html.dark .border-\[\#e0e5e9\] {
+  border-color: var(--border) !important;
+}
+
+/* =========================================================
+   DARK THEME — COMMON OLD PALETTE
+========================================================= */
+
+html.dark .bg-\[\#0D1015\],
+html.dark .bg-\[\#08090c\],
+html.dark .bg-\[\#08090C\],
+html.dark .bg-\[\#09090B\],
+html.dark .bg-\[\#0B0F19\],
+html.dark .bg-\[\#111827\] {
+  background-color: var(--background) !important;
+}
+
+html.dark .text-\[\#F5F5F0\],
+html.dark .text-\[\#F8FAFC\],
+html.dark .text-\[\#f8fafc\] {
+  color: var(--text-primary) !important;
+}
+
+/* =========================================================
+   DARK THEME — BUTTONS / INTERACTIVE SURFACES
+========================================================= */
+
+html.dark .bg-\[\#6246e8\] {
+  background-color: #705cf0 !important;
+}
+
+html.dark .hover\:bg-\[\#563bd8\]:hover {
+  background-color: #806ff3 !important;
+}
+
+html.dark .bg-\[\#172d49\] {
+  background-color: #edf4fa !important;
+}
+
+html.dark .text-\[\#172d49\] {
+  color: #172d49 !important;
+}
+
+/* =========================================================
+   DARK THEME — SEARCH / INPUTS
+========================================================= */
+
+html.dark input::placeholder {
+  color: #71859a;
+}
+
+html.dark input {
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   ANALYTICS GRID
+========================================================= */
+
+.analytics-grid {
+  background-image:
+    linear-gradient(
+      rgba(20, 121, 232, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(20, 121, 232, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 32px 32px;
+}
+
+html.dark .analytics-grid {
+  background-image:
+    linear-gradient(
+      rgba(99, 180, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(99, 180, 255, 0.055) 1px,
+      transparent 1px
+    );
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  body {
+    background: var(--background);
+  }
 }
